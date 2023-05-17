@@ -1,59 +1,21 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import { useTheme, Theme } from "@emotion/react";
 import { useGlobalContext } from "../../Contexts/GlobalContext";
 import * as Yup from "yup";
 
-// import MuiPhoneNumber from "material-ui-phone-number";
-
-import { Formik, Form, FormikProps, FormikFormProps } from "formik";
+import { Formik, FormikFormProps } from "formik";
 
 import { useNavigate } from "react-router-dom";
 
-// import {  Theme } from '@material-ui/core/styles';
 type Props = {};
-type userInputProps = {
-  name: String;
-  email: String;
-  phoneNumber: Number | String;
-};
 
 const Home = (props: Props) => {
   const navigate = useNavigate();
-  // const theme: Theme = useTheme();
-  const { userInfo, setUserInfo, isInfoCollected, setIsInfoCollected } =
-    useGlobalContext();
+  const { userInfo, setUserInfo, setIsInfoCollected } = useGlobalContext();
   const formRef = useRef(null);
-  // const [userInfo, setUserInfo] = useState<userInputProps>({
-  //   name: "",
-  //   email: "",
-  //   phoneNumber: "",
-  // });
-
-  // const handleSubmit = (values: {
-  //   name: String;
-  //   email: String;
-  //   phoneNumber: Number;
-  // }) => {
-  //   console.log(values);
-  //   setUserInfo(values);
-  //   localStorage.setItem("userdata", JSON.stringify(values));
-  //   navigate("/Test");
-  // };
-
-  // useEffect(() => {
-  //   console.log(
-  //     formRef,
-  //     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  //     userInfo
-  //   );
-  //   // !userInfo.name && navigate("/Test");
-  //   return () => {};
-  // }, []);
 
   return (
     <Box sx={{ backgroundColor: "background.paper" }}>
@@ -64,8 +26,6 @@ const Home = (props: Props) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          // flexDirection: "column",
-          // width: "100vw",
         }}
       >
         <Formik
@@ -85,16 +45,6 @@ const Home = (props: Props) => {
               .required("A phone number is required"),
           })}
           onSubmit={(values) => {
-            // setTimeout(() => {
-            //   alert(JSON.stringify(values, null, 2));
-            //   setSubmitting(false);
-            // }, 400);
-            // alert("value", values);
-            // handleFormSubmit(values);
-            // alert("submitted");
-            // console.log("Values", values);
-            // handleSubmit(values);
-
             setUserInfo(values);
             localStorage.setItem("userdata", JSON.stringify(values));
             navigate("/showcase");

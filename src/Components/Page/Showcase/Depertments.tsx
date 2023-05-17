@@ -195,12 +195,12 @@ const Depertment = (props: Props) => {
   };
   return (
     <div>
-      {depertments.map((item: DepertmentDataType) => {
+      {depertments.map((item: DepertmentDataType, index: number) => {
         //* State is used to enable accordion */
         const [state, setState] = useState<boolean>(true);
 
         return (
-          <>
+          <div key={index}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Checkbox
                 checked={item.checked}
@@ -221,31 +221,30 @@ const Depertment = (props: Props) => {
             </Box>
             {/* State is used to enable accordion */}
             {state &&
-              item.sub_departments.map((sub: SubDepertmentType) => {
+              item.sub_departments.map((sub: SubDepertmentType, i: number) => {
                 return (
-                  <>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginLeft: "2rem",
+                  <Box
+                    key={i}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginLeft: "2rem",
+                    }}
+                  >
+                    <Checkbox
+                      checked={sub.checked}
+                      indeterminate={sub.intermideate}
+                      onChange={() => {
+                        handleChildChange(item.id, sub.id);
                       }}
-                    >
-                      <Checkbox
-                        checked={sub.checked}
-                        indeterminate={sub.intermideate}
-                        onChange={() => {
-                          handleChildChange(item.id, sub.id);
-                        }}
-                      />
-                      <Typography variant="body1" color="red">
-                        {sub.title}
-                      </Typography>
-                    </Box>
-                  </>
+                    />
+                    <Typography variant="body1" color="red">
+                      {sub.title}
+                    </Typography>
+                  </Box>
                 );
               })}
-          </>
+          </div>
         );
       })}
     </div>

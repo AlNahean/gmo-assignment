@@ -40,7 +40,6 @@ const GlobalContextProvider = ({
         cachedDataString ? cachedDataString : ""
       );
 
-      console.log(parsedCachedData, "aaa");
       setUserInfo({ ...parsedCachedData });
 
       setIsInfoCollected(true);
