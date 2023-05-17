@@ -6,13 +6,20 @@ import { useGlobalContext } from "../../Contexts/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+import { useSnackbar } from "notistack";
+
 const Showcase = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const { isInfoCollected } = useGlobalContext();
 
   useEffect(() => {
     if (isInfoCollected === false) {
       navigate("/home");
+      enqueueSnackbar(
+        "You must enter their details before accessing this page.",
+        { variant: "error" }
+      );
     }
     return () => {};
   }, [isInfoCollected]);

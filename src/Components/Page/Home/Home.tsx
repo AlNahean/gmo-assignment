@@ -9,10 +9,10 @@ import * as Yup from "yup";
 import { Formik, FormikFormProps } from "formik";
 
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const { userInfo, setUserInfo, setIsInfoCollected } = useGlobalContext();
   const formRef = useRef(null);
@@ -49,6 +49,7 @@ const Home = (props: Props) => {
             localStorage.setItem("userdata", JSON.stringify(values));
             navigate("/showcase");
             setIsInfoCollected(true);
+            enqueueSnackbar("Success", { variant: "success" });
           }}
         >
           {(formik: FormikFormProps) => {

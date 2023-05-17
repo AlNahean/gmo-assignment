@@ -3,8 +3,6 @@ import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
 
-type Props = {};
-
 interface SubDepertmentType {
   title: string;
   id: number;
@@ -75,7 +73,7 @@ DepertmentsData = depertmentsData.map((item, index) => {
   };
 });
 
-const Depertment = (props: Props) => {
+const Depertment = () => {
   const [depertments, setDepertments] =
     useState<DepertmentsDataType>(DepertmentsData);
 
@@ -211,7 +209,6 @@ const Depertment = (props: Props) => {
               />
               <Typography
                 variant="body1"
-                color="red"
                 onClick={() => {
                   setState(!state);
                 }}
@@ -238,9 +235,7 @@ const Depertment = (props: Props) => {
                         handleChildChange(item.id, sub.id);
                       }}
                     />
-                    <Typography variant="body1" color="red">
-                      {sub.title}
-                    </Typography>
+                    <Typography variant="body1">{sub.title}</Typography>
                   </Box>
                 );
               })}

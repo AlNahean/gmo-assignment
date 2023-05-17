@@ -1,10 +1,9 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, useState } from "react";
 
 type ColorModeContextType = {
   test: String | null;
   setTest: (value: string) => void;
 };
-type TestStateType = String;
 
 type ColorModeContextProviderPropTypes = {
   children: React.ReactNode;
